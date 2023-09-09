@@ -1,0 +1,69 @@
+--insert group
+insert into [group](name, address, mail, phone_number, logo) values('IGSaaS', 'Phnom Penh', 'info@igsaas.com', 086601161, 'http://localhost/logo.png');
+insert into [group](name, address, mail, phone_number, logo) values('MeetDoctor', 'Phnom Penh', 'info@meetdoctor.com', 086601162, 'http://localhost/logo.png');
+insert into [group](name, address, mail, phone_number, logo) values('Finlink', 'Phnom Penh', 'info@finlink.com', 086601163, 'http://localhost/logo.png');
+
+--insert post_category
+insert into post_category(name, description) values('Staff Engagement', 'is the strength of the mental and emotional connection employees feel toward the work they do, their teams, and their organization');
+insert into post_category(name, description) values('History', 'For company history');
+insert into post_category(name, description) values('Learning & Development', 'Learning and development is a systematic process to enhance an employee skills, knowledge, and competency, resulting in better performance in a work setting');
+
+--insert user
+insert into [user](username, password, phone_number, mail, status, user_type) values('kbt', '123', 086601161, 'kbt@gmail.com', 'ACTIVE', 'ADMIN');
+
+insert into [user](username, password, phone_number, mail, status, user_type) values('sila', '123', 086601162, 'sila@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('thai', '123', 086601163, 'thai@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('dara', '123', 086601164, 'dara@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('sok', '123', 086601165, 'sok@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('neath', '123', 086601166, 'neath@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('rith', '123', 086601167, 'rith@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('vuty', '123', 086601168, 'vuty@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('smey', '123', 086601169, 'smey@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('sokea', '123', 086601170, 'sokea@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('bunla', '123', 086601171, 'bunla@gmail.com', 'ACTIVE', 'USER');
+insert into [user](username, password, phone_number, mail, status, user_type) values('sinh', '123', 086601172, 'sinh@gmail.com', 'ACTIVE', 'USER');
+
+--insert user group
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'kbt'), (select id from [group] where name = 'IGSaaS'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'sila'), (select id from [group] where name = 'IGSaaS'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'thai'), (select id from [group] where name = 'IGSaaS'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'dara'), (select id from [group] where name = 'IGSaaS'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'sok'), (select id from [group] where name = 'IGSaaS'));
+
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'kbt'), (select id from [group] where name = 'MeetDoctor'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'neath'), (select id from [group] where name = 'MeetDoctor'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'rith'), (select id from [group] where name = 'MeetDoctor'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'vuty'), (select id from [group] where name = 'MeetDoctor'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'smey'), (select id from [group] where name = 'MeetDoctor'));
+
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'kbt'), (select id from [group] where name = 'Finlink'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'sokea'), (select id from [group] where name = 'Finlink'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'bunla'), (select id from [group] where name = 'Finlink'));
+insert into user_group(user_id, group_id) values((select id from [user] where username = 'sinh'), (select id from [group] where name = 'Finlink'));
+
+--insert a post
+insert into post(post_category_id, caption, created_by) 
+	values((select id from post_category where name = 'Learning & Development'),
+	'Microservice with GRPC protocal communication', 
+	(select id from [user] where username = 'kbt'));
+
+insert into post_group_visiblity(post_id, group_id) values((select top 1 id from post order by id desc), (select id from [group] where name = 'IGSaaS'));
+insert into post_media(post_id, [size], mime_type, file_name) values((select top 1 id from post order by id desc),6020,'image/png', 'http://localhost/pic1.jpg');
+
+-- query a post for all info
+select 
+	p.id,
+	pc.name as post_category_name,
+	p.caption,
+	p.custom_layout,
+	p.created_at,
+	u.username as created_by,
+	g.name as visibility_group_name,
+	pm.mime_type as media_mime_type,
+	pm.file_name as media_file_name
+from post p 
+inner join [user] u on u.id = p.created_by
+inner join post_category pc on pc.id = p.post_category_id
+inner join post_group_visiblity pgv on pgv.post_id = p.id
+left join [group] g on g.id = pgv.group_id
+left join post_media pm on pm.post_id = p.id
