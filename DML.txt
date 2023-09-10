@@ -67,3 +67,46 @@ inner join post_category pc on pc.id = p.post_category_id
 inner join post_group_visiblity pgv on pgv.post_id = p.id
 left join [group] g on g.id = pgv.group_id
 left join post_media pm on pm.post_id = p.id
+
+CREATE VIEW post_view AS
+select 
+	p.id,
+	pc.name as post_category_name,
+	p.caption,
+	p.custom_layout,
+	p.created_at,
+	u.username as created_by,
+	g.name as visibility_group_name,
+	pm.mime_type as media_mime_type,
+	pm.file_name as media_file_name
+from post p 
+inner join [user] u on u.id = p.created_by
+inner join post_category pc on pc.id = p.post_category_id
+inner join post_group_visiblity pgv on pgv.post_id = p.id
+left join [group] g on g.id = pgv.group_id
+left join post_media pm on pm.post_id = p.id;
+
+
+--PROCEDURE delete post_category
+CREATE PROCEDURE delete_post_category_by_id (
+  @id int
+)
+AS
+BEGIN
+  DELETE FROM post_category
+  WHERE id = @id;
+END;
+
+exec delete_post_category_by_id 6;
+
+
+CREATE PROCEDURE view_post_by_id (
+  @id int
+)
+AS
+BEGIN
+  select * from post_view where id = @id;
+END;
+
+EXEC view_post_by_id 2
+
