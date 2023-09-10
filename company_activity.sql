@@ -71,6 +71,53 @@ CREATE UNIQUE INDEX [uk_post_group_visiblity] ON [post_group_visiblity] ("post_i
 GO
 
 EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Use for the user login information',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'unique primary key for table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user',
+@level2type = N'Column', @level2name = 'id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'unique name for login to system',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user',
+@level2type = N'Column', @level2name = 'username';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'password for login to system',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user',
+@level2type = N'Column', @level2name = 'password';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'employee mobile number',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user',
+@level2type = N'Column', @level2name = 'phone_number';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'employee persoanl mail address',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user',
+@level2type = N'Column', @level2name = 'mail';
+GO
+
+EXEC sp_addextendedproperty
 @name = N'Column_Description',
 @value = '
       ACTIVE= for active user
@@ -93,6 +140,154 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Use for define group of employee',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'group';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'unique primary key for table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'group',
+@level2type = N'Column', @level2name = 'id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'group name',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'group',
+@level2type = N'Column', @level2name = 'name';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'group address',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'group',
+@level2type = N'Column', @level2name = 'address';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'group mail address',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'group',
+@level2type = N'Column', @level2name = 'mail';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'group mobile number',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'group',
+@level2type = N'Column', @level2name = 'phone_number';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'group image url',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'group',
+@level2type = N'Column', @level2name = 'logo';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Use for define user in groups that have privillage to see the post',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user_group';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'unique primary key for table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user_group',
+@level2type = N'Column', @level2name = 'id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'foreign key user id',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user_group',
+@level2type = N'Column', @level2name = 'user_id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'foreign key group id',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'user_group',
+@level2type = N'Column', @level2name = 'group_id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Use for clasify post category type base on posting',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_category';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'unique primary key for table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_category',
+@level2type = N'Column', @level2name = 'id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'post category name to clasify posting type',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_category',
+@level2type = N'Column', @level2name = 'name';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'additional note for user',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_category',
+@level2type = N'Column', @level2name = 'description';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Use for post content or history by group that content info like photos, videos',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'unique primary key for table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post',
+@level2type = N'Column', @level2name = 'id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'foreign key post category to define posting type',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post',
+@level2type = N'Column', @level2name = 'post_category_id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'posting catpion',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post',
+@level2type = N'Column', @level2name = 'caption';
+GO
+
+EXEC sp_addextendedproperty
 @name = N'Column_Description',
 @value = '
       CLASSIC = clasic display for media
@@ -103,6 +298,116 @@ EXEC sp_addextendedproperty
 @level0type = N'Schema', @level0name = 'dbo',
 @level1type = N'Table',  @level1name = 'post',
 @level2type = N'Column', @level2name = 'custom_layout';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'store current datetime',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post',
+@level2type = N'Column', @level2name = 'created_at';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'store current user login id',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post',
+@level2type = N'Column', @level2name = 'created_by';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Use for store post media like image, video, doc etc',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_media';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'unique primary key for table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_media',
+@level2type = N'Column', @level2name = 'id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'foreign key post table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_media',
+@level2type = N'Column', @level2name = 'post_id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'catpion base on media',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_media',
+@level2type = N'Column', @level2name = 'caption';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'media file size',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_media',
+@level2type = N'Column', @level2name = 'size';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'media mime type example image/bmp, image/jpeg',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_media',
+@level2type = N'Column', @level2name = 'mime_type';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'file url name',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_media',
+@level2type = N'Column', @level2name = 'file_name';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'store current datetime',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_media',
+@level2type = N'Column', @level2name = 'created_at';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Use for visiblity to group to see the posting',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_group_visiblity';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'unique primary key for table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_group_visiblity',
+@level2type = N'Column', @level2name = 'id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'foreign key post table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_group_visiblity',
+@level2type = N'Column', @level2name = 'post_id';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Column_Description',
+@value = 'foreign key group table',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'post_group_visiblity',
+@level2type = N'Column', @level2name = 'group_id';
 GO
 
 ALTER TABLE [user_group] ADD FOREIGN KEY ([user_id]) REFERENCES [user] ([id])
